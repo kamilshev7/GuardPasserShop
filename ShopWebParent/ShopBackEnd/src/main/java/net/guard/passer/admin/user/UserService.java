@@ -5,11 +5,13 @@ import net.guard.passer.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+@Transactional
 public class UserService {
     @Autowired
     private UserRepository userRepository;
@@ -82,5 +84,9 @@ public class UserService {
             throw new UserNotFoundException("Пользователь с ID: " + id + " не найден");
         }
         userRepository.deleteById(id);
+    }
+
+    public void updateUserEnabledStatus(Integer id, boolean enabled){
+        userRepository.updateEnableStatus(id, enabled);
     }
 }

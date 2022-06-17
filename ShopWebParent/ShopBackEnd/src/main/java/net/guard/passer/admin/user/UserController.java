@@ -79,4 +79,15 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @GetMapping("/users/{id}/enabled/{status}")
+    public String upateUserEnabledStatus(@PathVariable(name = "id") Integer id,
+                             @PathVariable("status") boolean enabled,
+                             RedirectAttributes redirectAttributes){
+        userService.updateUserEnabledStatus(id, enabled);
+        String status = enabled ? "активирован" : "заблокирован";
+        String message = "Пользователь с ID: " + id + " был " + status;
+        redirectAttributes.addFlashAttribute("message", message);
+        return "redirect:/users";
+    }
+
 }
