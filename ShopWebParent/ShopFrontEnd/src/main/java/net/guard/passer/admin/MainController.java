@@ -1,4 +1,4 @@
-package net.guard.passer;
+package net.guard.passer.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
